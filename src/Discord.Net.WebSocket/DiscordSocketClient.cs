@@ -1617,7 +1617,7 @@ namespace Discord.WebSocket
         }
         private async Task SyncGuildsAsync()
         {
-            var guildIds = Guilds.Where(x => !x.IsSynced).Select(x => x.Id).ToImmutableArray();
+            var guildIds = Guilds.Where(x => !x.IsSynced).Where(x => x._available).Select(x => x.Id).ToImmutableArray();
             if (guildIds.Length > 0)
                 await ApiClient.SendGuildSyncAsync(guildIds).ConfigureAwait(false);
         }
