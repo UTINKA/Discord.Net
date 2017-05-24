@@ -23,6 +23,9 @@ namespace Discord
         {
             RawValue = rawValue;
         }
+        /// <summary>
+        /// Create a Color from RGB
+        /// </summary>
         public Color(byte r, byte g, byte b)
         {
             RawValue =
@@ -30,6 +33,9 @@ namespace Discord
                 ((uint)g << 8) |
                 (uint)b;
         }
+        /// <summary>
+        /// Create a Color from RGB
+        /// </summary>
         public Color(int r, int g, int b)
         {
             if (r < 0 || r > 255)
@@ -43,6 +49,9 @@ namespace Discord
                 ((uint)g << 8) |
                 (uint)b;
         }
+        /// <summary>
+        /// Create a color from HSV
+        /// </summary>
         public Color(float r, float g, float b)
         {
             if (r < 0.0f || r > 1.0f)

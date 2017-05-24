@@ -7,26 +7,52 @@ namespace Discord
     /// <summary> A Guild-User pairing. </summary>
     public interface IGuildUser : IUser, IVoiceState
     {
-        /// <summary> Gets when this user joined this guild. </summary>
+        /// <summary>
+        /// Gets when this user joined this guild.
+        /// </summary>
         DateTimeOffset? JoinedAt { get; }
-        /// <summary> Gets the nickname for this user. </summary>
+        /// <summary>
+        /// Gets the nickname for this user.
+        /// </summary>
         string Nickname { get; }
-        /// <summary> Gets the guild-level permissions for this user. </summary>
+        /// <summary>
+        /// Gets the guild-level permissions for this user.
+        /// </summary>
         GuildPermissions GuildPermissions { get; }
 
-        /// <summary> Gets the guild for this user. </summary>
+        /// <summary>
+        /// Gets the guild for this user.
+        /// </summary>
         IGuild Guild { get; }
-        /// <summary> Gets the id of the guild for this user. </summary>
+        /// <summary>
+        /// Gets the id of the guild for this user.
+        /// </summary>
         ulong GuildId { get; }
-        /// <summary> Returns a collection of the ids of the roles this user is a member of in this guild, including the guild's @everyone role. </summary>
+        /// <summary>
+        /// Returns a collection of the ids of the roles this user is a member of in this guild, 
+        /// including the guild's @everyone role.
+        /// </summary>
+        /// <seealso cref="IGuild.GetRole(ulong)"/>
+        /// <seealso cref="IGuild.EveryoneRole" />
         IReadOnlyCollection<ulong> RoleIds { get; }
 
-        /// <summary> Gets the level permissions granted to this user to a given channel. </summary>
+        /// <summary>
+        /// Gets the level permissions granted to this user to a given channel.
+        /// </summary>
         ChannelPermissions GetPermissions(IGuildChannel channel);
 
         /// <summary> Kicks this user from this guild. </summary>
         Task KickAsync(RequestOptions options = null);
-        /// <summary> Modifies this user's properties in this guild. </summary>
+        /// <summary>
+        /// Modifies this user's properties in this guild.
+        /// </summary>
+        /// <param name="func">A function to specify what entities should be changed on the user</param>
+        /// <example>
+        /// <code>
+        /// var user = await guild.GetUserAsync(144541952216399872);
+        /// await user.ModifyAsync(x =&gt; { x.Nickname = &quot;sweet discrim btw&quot;; });
+        /// </code>
+        /// </example>
         Task ModifyAsync(Action<GuildUserProperties> func, RequestOptions options = null);
 
         /// <summary> Adds a role to this user in this guild. </summary>

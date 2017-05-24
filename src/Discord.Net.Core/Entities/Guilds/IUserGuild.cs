@@ -1,5 +1,12 @@
 ﻿namespace Discord
 {
+    /// <summary>
+    /// A summary of a guild that the user is a member of
+    /// </summary>
+    /// <remarks>
+    /// These entities are lacking in information, and it is preferred to use <see cref="IGuild"/>
+    /// instead.
+    /// </remarks>
     public interface IUserGuild : IDeletable, ISnowflakeEntity
     {
         /// <summary> Gets the name of this guild. </summary>

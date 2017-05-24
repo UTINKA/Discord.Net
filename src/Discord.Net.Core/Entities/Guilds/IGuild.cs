@@ -51,9 +51,23 @@ namespace Discord
         /// <summary> Gets a collection of all roles in this guild. </summary>
         IReadOnlyCollection<IRole> Roles { get; }
 
-        /// <summary> Modifies this guild. </summary>
+        /// <summary>
+        /// Modifies this guild
+        /// </summary>
+        /// <param name="func">A function to specify what entities should be changed on the message</param>
+        /// <example>
+        /// <code language="c#">
+        /// await Context.Guild.ModifyAsync(async x =>
+        /// {
+        ///     x.Name = "aaaaaah";
+        ///     x.RegionId = (await Context.Client.GetOptimalVoiceRegionAsync()).Id;
+        /// });
+        /// </code>
+        /// </example>
         Task ModifyAsync(Action<GuildProperties> func, RequestOptions options = null);
-        /// <summary> Modifies this guild's embed. </summary>
+        /// <summary>
+        /// Modifies this guild's embed.
+        /// </summary>
         Task ModifyEmbedAsync(Action<GuildEmbedProperties> func, RequestOptions options = null);
         /// <summary> Bulk modifies the channels of this guild. </summary>
         Task ReorderChannelsAsync(IEnumerable<ReorderChannelProperties> args, RequestOptions options = null);
